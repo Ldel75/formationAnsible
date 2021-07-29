@@ -24,7 +24,7 @@
       src: index.html 
       dest: /var/www/html
   - name: apache service activation
-  service:
-  name: "httpd"
-  state: "started"
-  enabled: yes
+    service:
+      name: "httpd"
+      state: "started"
+      enabled: yes
