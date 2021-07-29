@@ -13,20 +13,71 @@
        # - npm
       #update_cache: yes
   
-  - name: install apache2
+#  - name: install apache2
+#   apt:
+#     name: apache2
+#     state: present
+#     update_cache: yes
+# - name: file configuration copy
+#   copy: 
+#     src: index.html 
+#     dest: /var/www/html
+#     owner: root
+#     group: root
+#     mode: u+rw,g=r,o=r
+# - name: launch apache2
+#   service:
+#       name: apache2
+#       state: started
+#       enabled: yes
+  - name: installer docker
     apt:
-      name: apache2
-      state: present
+      name: docker
+      status: present
       update_cache: yes
-  - name: file configuration copy
-    copy: 
-      src: index.html 
-      dest: /var/www/html
-      owner: root
-      group: root
-      mode: u+rw,g=r,o=r
-  - name: launch apache2
+
+  - name: copier les sources des projets result, vote et worker
+    copy: src={{ item.src }} dest={{ item.dest }}
+    with_items:
+    - { src: TPDocker/result, dest: /TPDocker }
+    - { src: TPDocker/vote , dest: /TPDocker }
+    - { src: TPDocker/worker, dest: /TPDocker }
+
+  - name: build docker
     service:
-        name: apache2
-        state: started
-        enabled: yes
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: build l'image result
+    docker_image:
+      build:
+        dockerfile: ./TPDocker/result
+        path: ./
+        nocache: true
+      name: image_result
+      force_source: true
+
+  - name: build l'image vote
+    docker_image:
+      build:
+        dockerfile: ./TPDocker/vote
+        path: ./
+        nocache: true
+      name: image_vote
+      force_source: true
+
+  - name: build l'image worker
+    docker_image:
+      build:
+        dockerfile: ./TPDocker/worker
+        path: ./
+        nocache: true
+      name: image_worker
+      force_source: true  
+
+  - name: Suppresion des sources
+    file:
+      state: absent
+      path: ./TPDocker
+  
