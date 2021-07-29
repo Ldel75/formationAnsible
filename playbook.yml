@@ -25,8 +25,8 @@
       owner: root
       group: root
       mode: u+rw,g=r,o=r
-  - name: apache service activation
+  - name: launch apache2
     service:
-      name: httpd
-      state: started
-      enabled: yes
+        name: apache2
+        state: started
+        enabled: yes
