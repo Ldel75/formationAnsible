@@ -23,6 +23,9 @@
     copy: 
       src: index.html 
       dest: /var/www/html
+      owner: root
+      group: root
+      mode: u+rw,g=r,o=r
   - name: apache service activation
     service:
       name: httpd
