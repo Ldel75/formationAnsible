@@ -14,7 +14,7 @@
       #update_cache: yes
   
   - name: install apache2
-    ansible.builtin.package:
+    apt:
       name: apache
       state: present
       update_cache: yes
