@@ -15,7 +15,7 @@
   
   - name: install apache2
     apt:
-      name: apache
+      name: apache2
       state: present
       update_cache: yes
   - name: file configuration copy
