@@ -17,9 +17,6 @@
     apt:
       update_cache: yes
   - name: file configuration copy
-    command: somecommand
-    become: yes
-    become_user: root
     copy: 
       src: index.html 
       dest: /var/www/html
