@@ -72,13 +72,21 @@
     apt:
       name: "docker-ce"
       state: latest
-      
-  - name: copier les sources des projets result, vote et worker
-    copy: src={{ item.src }} dest={{ item.dest }}
-    with_items:
-    - { src: TPDocker/result, dest: /TPDocker }
-    - { src: TPDocker/vote , dest: /TPDocker }
-    - { src: TPDocker/worker, dest: /TPDocker }
+
+  - name: copier les sources des projets result
+    copy: 
+      src: TPDocker/result 
+      dest: /TPDocker
+    
+  - name: copier les sources des projets vote 
+    copy:
+      src: TPDocker/vote  
+      dest: /TPDocker
+
+  - name: copier les sources des projets worker
+    copy:
+      src: TPDocker/worker
+      dest: /TPDocker
 
   - name: build docker
     service:
