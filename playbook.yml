@@ -25,6 +25,6 @@
       dest: /var/www/html
   - name: apache service activation
     service:
-      name: "httpd"
-      state: "started"
+      name: httpd
+      state: started
       enabled: yes
