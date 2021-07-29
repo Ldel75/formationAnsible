@@ -75,17 +75,17 @@
 
   - name: copier les sources des projets result
     copy: 
-      src: TPDocker/result 
+      src: result 
       dest: /TPDocker
     
   - name: copier les sources des projets vote 
     copy:
-      src: TPDocker/vote  
+      src: vote  
       dest: /TPDocker
 
   - name: copier les sources des projets worker
     copy:
-      src: TPDocker/worker
+      src: worker
       dest: /TPDocker
 
   - name: build docker
