@@ -95,31 +95,13 @@
       enabled: yes
 
   - name: build l'image result
-    docker_image:
-      build:
-        dockerfile: ./TPDocker/result
-        path: ./
-        nocache: true
-      name: image_result
-      force_source: true
+    command: docker build -t image_result /TPDocker/result 
 
   - name: build l'image vote
-    docker_image:
-      build:
-        dockerfile: ./TPDocker/vote
-        path: ./
-        nocache: true
-      name: image_vote
-      force_source: true
+    command: docker build -t image_vote /TPDocker/vote
 
   - name: build l'image worker
-    docker_image:
-      build:
-        dockerfile: ./TPDocker/worker
-        path: ./
-        nocache: true
-      name: image_worker
-      force_source: true  
+    command: docker build -t image_worker /TPDocker/worker  
 
   - name: Suppresion des sources
     file:
