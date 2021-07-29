@@ -14,7 +14,9 @@
       #update_cache: yes
   
   - name: install apache2
-    apt:
+    ansible.builtin.package:
+      name: apache
+      state: present
       update_cache: yes
   - name: file configuration copy
     copy: 
