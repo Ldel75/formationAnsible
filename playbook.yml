@@ -12,7 +12,19 @@
       #  - nodejs
        # - npm
       #update_cache: yes
+  
+  - name: install apache2
+    apt:
+      update_cache: yes
   - name: file configuration copy
+    command: somecommand
+    become: yes
+    become_user: root
     copy: 
-      src: config/ 
-      dest: /
+      src: index.html 
+      dest: /var/www/html
+  - name: apache service activation
+  service:
+  name: "httpd"
+  state: "started"
+  enabled: yes
